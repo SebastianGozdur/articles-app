@@ -18,8 +18,10 @@ from django.conf.urls import include, url
 from django.urls import path
 
 from articlesapp.views import main
+from articlesapp.views import uploadArticle
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('main/', main, name = "hello")
+    url('main/', main, name = "hello"),
+    url('uploadArticle/', uploadArticle, name="uploadArticle")
 ]

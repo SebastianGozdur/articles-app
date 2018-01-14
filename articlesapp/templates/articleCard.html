@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/articles.css'%}">
+    <link rel="stylesheet" href="{% static 'css/foundation.css'%}">
+    <!-- This is how you would link your custom stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/app.css'%}">
+    <script src="{% static 'js/vendor/foundation.js'%}"></script>
     <title>Title</title>
 </head>
 <body>
-
+<div class="top-bar">
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li><a href="/">Articles</a></li>
+        </ul>
+    </div>
+</div>
+<div class="callout large primary">
+    <div class="row column text-center">
+        <h1>{{ articleName }}</h1>
+        <h2 class="subheader">Rating: {{ rating }}t</h2>
+    </div>
+</div>
+<div class="row medium-8 large-7 columns">
+    <div class="blog-post">
+        <h3><a href="/article/{{ articleName }}.pdf">{{articleName}}</a>
+        </h3>
+    </div>
+</div>
 </body>
 </html>

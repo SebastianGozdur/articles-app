@@ -21,9 +21,11 @@
     </tr>
     </thead>
     <tbody>
-    {% for o in articles %}
+    {% for name in articles %}
     <tr>
-        <td data-label="{{ o }}"><!--<a href="/article/{{ o }}.pdf">{{o}}</a>-->
+        <td data-label="{{ name }}">
+            <a href="articleCard/{{name}}"> {{name}}</a>
+
         </td>
         <td>
             <div class="rating-block">

@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from os import listdir
 from os.path import isfile, join
 from articlesapp.helpers import util
+from polls.models import Article
 
 ARTICLES_PATH = 'articles'
 
@@ -34,3 +35,11 @@ def article(request, articleName):
       response['Content-Disposition'] = 'inline;filename=test.pdf'
       return response
 
+def articleCard(request, articleName):
+   article = None
+   if not Article.objects.filter(articleName=articleName):
+      article = Article(articleName = articleName, rating = 0)
+      article.save()
+   else:
+      article = Article.objects.filter(articleName=articleName)[0]
+   return render(request, "articleCard.html", { 'articleName' : article.articleName, 'rating' : article.rating })

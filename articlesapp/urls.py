@@ -22,8 +22,7 @@ from articlesapp.views import main, uploadArticle, articlesList, article
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('main/', main, name = "hello"),
     url('uploadArticle/', uploadArticle, name="uploadArticle"),
-    url('articles/', articlesList, name = "articles"),
+    url(r'^$', articlesList, name = "articles"),
     path('article/<str:articleName>/', article, name = "article")
 ]

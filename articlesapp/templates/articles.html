@@ -2,12 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/articles.css'%}">
+    <link rel="stylesheet" href="{% static 'css/foundation.css'%}">
+    <!-- This is how you would link your custom stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/app.css'%}">
+    <script src="{% static 'js/vendor/foundation.js'%}"></script>
+    <title>Articles</title>
 </head>
 <body>
+<table class="responsive-card-table unstriped">
+    <thead>
+    <tr>
+        <th>File Name</th>
+        <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
     {% for o in articles %}
-       <a href="/article/{{ o }}.pdf">{{o}}</a>
+    <tr>
+        <td data-label="{{ o }}"><!--<a href="/article/{{ o }}.pdf">{{o}}</a>-->
+        </td>
+        <td>
+            <div class="rating-block">
+                <div class="rating-block-rating" data-rating>
+                    <div class="star">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
     {% endfor %}
+    </tbody>
+</table>
+
+
 </body>
+
+<script>
+
+        $('[data-rating] .star').on('click', function() {
+      var selectedCssClass = 'selected';
+      var $this = $(this);
+      $this.siblings('.' + selectedCssClass).removeClass(selectedCssClass);
+      $this
+        .addClass(selectedCssClass)
+        .parent().addClass('is-voted');
+    });
+
+
+</script>
 </html>

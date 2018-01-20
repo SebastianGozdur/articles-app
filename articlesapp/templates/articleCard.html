@@ -7,12 +7,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/articles.css'%}">
     <link rel="stylesheet" href="{% static 'css/foundation.css'%}">
-    <!-- This is how you would link your custom stylesheet -->
     <link rel="stylesheet" href="{% static 'css/app.css'%}">
     <script src="{% static 'js/vendor/foundation.js'%}"></script>
     <title>Title</title>
 </head>
 <body>
+
 <div class="top-bar">
     <div class="top-bar-left">
         <ul class="menu">
@@ -26,11 +26,113 @@
         <h2 class="subheader">Rating: {{ rating }}t</h2>
     </div>
 </div>
-<div class="row medium-8 large-7 columns">
-    <div class="blog-post">
-        <h3><a href="/article/{{ articleName }}.pdf">{{articleName}}</a>
-        </h3>
+<div class="callout success" hidden>
+</div>
+<div class="grid-x align-center">
+    <div class="small-6 cell ">
+        <h3><a href="/article/{{ articleName }}.pdf">{{articleName}}</a></h3>
     </div>
 </div>
+<h3>rating : {{rating}}</h3>
+<div class="grid-x align-center" style="margin-top:80px">
+    <div class="small-6 cell ">
+        <form action="/submitVote/" method="POST" id = "voteForm">
+            {% csrf_token %}
+            <div class="rating-block">
+                <div class="rating-block-rating" data-rating>
+                    <div class="star" star-value="1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star" star-value="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star" star-value="3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star" star-value="4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                    <div class="star" star-value="5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="37" viewBox="0 0 40 37">
+                            <polygon fill="none"
+                                     points="272 30 260.244 36.18 262.489 23.09 252.979 13.82 266.122 11.91 272 0 277.878 11.91 291.021 13.82 281.511 23.09 283.756 36.18"
+                                     transform="translate(-252)"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <input class="button expanded" type="submit" value="Vote">
+        </form>
+    </div>
+</div>
+<script>
+      $('[data-rating] .star').on('click', function() {
+          var selectedCssClass = 'selected';
+          var $this = $(this);
+          $this.siblings('.' + selectedCssClass).removeClass(selectedCssClass);
+          $this
+            .addClass(selectedCssClass)
+            .parent().addClass('is-voted');
+
+          var currentValue = jQuery(this).attr('star-value');
+          jQuery('[data-rating]').val(currentValue);
+    });
+
+    $('#voteForm').on('submit', function(event){
+        event.preventDefault();
+        submitVote();
+    });
+
+    function submitVote() {
+        var currentValue = jQuery('[data-rating]').val();
+        console.log('current');
+        console.log(currentValue);
+        $.ajax({
+            url : "/submitVote/",
+            type : "POST",
+            data : { ratingValue : currentValue, articleName : '{{articleName}}' },
+
+            success : function(json) {
+                jQuery('.callout.success').text('Sucessfully voted');
+                jQuery('.callout.success').show();
+            },
+
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    }
+
+    fillStars();
+
+    function fillStars() {
+        var element = jQuery(".star[star-value={{rating}}]");
+        var selectedCssClass = 'selected';
+        var $this = $(element);
+        $this.siblings('.' + selectedCssClass).removeClass(selectedCssClass);
+        $this
+            .addClass(selectedCssClass)
+            .parent().addClass('is-voted');
+
+         var currentValue = jQuery(element).attr('star-value');
+         jQuery('[data-rating]').val(currentValue);
+    }
+</script>
 </body>
 </html>

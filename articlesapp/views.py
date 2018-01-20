@@ -43,3 +43,14 @@ def articleCard(request, articleName):
    else:
       article = Article.objects.filter(articleName=articleName)[0]
    return render(request, "articleCard.html", { 'articleName' : article.articleName, 'rating' : article.rating })
+
+@csrf_exempt
+def submitVote(request):
+   ratingValue = request.POST['ratingValue']
+   articleName = request.POST['articleName']
+   print(articleName)
+   article = Article.objects.filter(articleName=articleName)[0]
+   print(ratingValue)
+   article.rating = int(ratingValue)
+   article.save()
+   return HttpResponse("voted")

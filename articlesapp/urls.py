@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.conf.urls import include, url
 from django.urls import path
 
-from articlesapp.views import main, uploadArticle, articlesList, article, articleCard
+from articlesapp.views import main, uploadArticle, articlesList, article, articleCard, submitVote
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('uploadArticle/', uploadArticle, name="uploadArticle"),
     url(r'^$', articlesList, name = "articles"),
     path('article/<str:articleName>/', article, name = "article"),
-    path('articleCard/<str:articleName>/', articleCard, name = "articleCard")
+    path('articleCard/<str:articleName>/', articleCard, name = "articleCard"),
+    path('submitVote/', submitVote, name = 'vote')
 ]

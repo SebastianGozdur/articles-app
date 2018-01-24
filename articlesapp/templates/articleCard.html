@@ -12,7 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-
 <div class="top-bar">
     <div class="top-bar-left">
         <ul class="menu">
@@ -20,22 +19,17 @@
         </ul>
     </div>
 </div>
-<div class="callout large primary">
+<div class="callout large">
     <div class="row column text-center">
-        <h1>{{ articleName }}</h1>
-        <h2 class="subheader">Rating: {{ rating }}t</h2>
+        <h1>Article Name: {{ articleName }}</h1>
+        <a href="/article/{{ articleName }}.pdf" class="button large">Display PDF file</a>
     </div>
 </div>
 <div class="callout success" hidden>
 </div>
-<div class="grid-x align-center">
-    <div class="small-6 cell ">
-        <h3><a href="/article/{{ articleName }}.pdf">{{articleName}}</a></h3>
-    </div>
-</div>
-<h3>rating : {{rating}}</h3>
-<div class="grid-x align-center" style="margin-top:80px">
-    <div class="small-6 cell ">
+<div class="grid-x grid-margin-x">
+    <div class="auto cell"></div>
+    <div class="small-4 cell">
         <form action="/submitVote/" method="POST" id = "voteForm">
             {% csrf_token %}
             <div class="rating-block">
@@ -77,8 +71,14 @@
                     </div>
                 </div>
             </div>
-            <input class="button expanded" type="submit" value="Vote">
+            <input class="button large hollow" style="margin-top:50px" type="submit" value="Vote">
         </form>
+    </div>
+    <div class="auto cell"></div>
+</div>
+<div class="grid-x align-center" style="margin-top:80px">
+    <div class="small-6 cell ">
+
     </div>
 </div>
 <script>

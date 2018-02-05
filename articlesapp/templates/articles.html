@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% extends 'base.html' %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/articles.css'%}">
-    <link rel="stylesheet" href="{% static 'css/foundation.css'%}">
-    <!-- This is how you would link your custom stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/app.css'%}">
-    <script src="{% static 'js/vendor/foundation.js'%}"></script>
-    <title>Articles</title>
-</head>
-<body>
-<div class="callout large">
-    <div class="row column text-center">
-        <h1>Articles</h1>
-    </div>
-</div>
-<table class="responsive-card-table unstriped">
+{% block content %}
+<table class="hover">
     <thead>
     <tr>
         <th>File Name</th>
-        <th>Rating</th>
     </tr>
     </thead>
     <tbody>
@@ -36,18 +18,4 @@
     {% endfor %}
     </tbody>
 </table>
-
-
-</body>
-
-<script>
-      $('[data-rating] .star').on('click', function() {
-          var selectedCssClass = 'selected';
-          var $this = $(this);
-          $this.siblings('.' + selectedCssClass).removeClass(selectedCssClass);
-          $this
-            .addClass(selectedCssClass)
-            .parent().addClass('is-voted');
-      });
-</script>
-</html>
+{% endblock %}

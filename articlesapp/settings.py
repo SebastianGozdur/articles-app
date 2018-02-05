@@ -26,7 +26,7 @@ SECRET_KEY = 'l1dwwgov!=e8@e03!7a$7pp4ss1b96fq^z5%jv=kbigx&9iuzf'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 

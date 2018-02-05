@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include, url
 from django.urls import path
+from django.contrib.auth import views as auth_views
 
 from articlesapp.views import main, uploadArticle, articlesList, article, articleCard, submitVote
 
@@ -25,5 +26,6 @@ urlpatterns = [
     url(r'^$', articlesList, name = "articles"),
     path('article/<str:articleName>/', article, name = "article"),
     path('articleCard/<str:articleName>/', articleCard, name = "articleCard"),
-    path('submitVote/', submitVote, name = 'vote')
+    path('submitVote/', submitVote, name = 'vote'),
+    url(r'^login/$', auth_views.login, name='login')
 ]

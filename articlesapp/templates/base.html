@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/articles.css'%}">
+    <link rel="stylesheet" href="{% static 'css/foundation.css'%}">
+    <!-- This is how you would link your custom stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/app.css'%}">
+    <script src="{% static 'js/vendor/foundation.js'%}"></script>
+    <title>Articles</title>
+</head>
+<body>
+<div class="top-bar">
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li><a href="/">Articles</a></li>
+        </ul>
+    </div>
+</div>
+<div class="mainBlockContainer">
+    <div class="callout large customCallout">
+        <div class="row column text-center customRow">
+            <h1>Articles</h1>
+        </div>
+    </div>
+    <div class="logo"></div>
+</div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

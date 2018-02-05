@@ -74,7 +74,11 @@
             <input class="button large hollow" style="margin-top:50px" type="submit" value="Vote">
         </form>
     </div>
-    <div class="auto cell"></div>
+    <div class="auto cell">
+        <form action="" method="POST" id = "deleteForm">
+            <input class="button large hollow" style="margin-top:97px; position: relative; left: -300px;" type="submit" value="Delete">
+        </form>
+    </div>
 </div>
 <div class="grid-x align-center" style="margin-top:80px">
     <div class="small-6 cell ">
@@ -97,6 +101,15 @@
     $('#voteForm').on('submit', function(event){
         event.preventDefault();
         submitVote();
+    });
+
+/*$(document).on('click', '#deleteForm input', function(){
+deleteStars();
+})*/
+ $('#deleteForm').on('submit', function(event){
+        event.preventDefault();
+        deleteStars();
+        deleteVote();
     });
 
     function submitVote() {
@@ -132,6 +145,37 @@
 
          var currentValue = jQuery(element).attr('star-value');
          jQuery('[data-rating]').val(currentValue);
+    }
+    function deleteStars() {
+        var element = jQuery(".star[star-value={{rating}}]");
+        var selectedCssClass = 'selected';
+        var $this = $(element);
+        $this.siblings('.' + selectedCssClass).removeClass(selectedCssClass);
+        $this
+            .removeClass(selectedCssClass)
+            .parent().removeClass('is-voted');
+
+         var currentValue = 0;
+         jQuery('[data-rating]').val(currentValue);
+    }
+     function deleteVote() {
+        var currentValue = 0;
+        console.log('current');
+        console.log(currentValue);
+        $.ajax({
+            url : "/submitVote/",
+            type : "POST",
+            data : { ratingValue : currentValue, articleName : '{{articleName}}' },
+
+            success : function(json) {
+                jQuery('.callout.success').text('Sucessfully delete');
+                jQuery('.callout.success').show();
+            },
+
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
     }
 </script>
 </body>

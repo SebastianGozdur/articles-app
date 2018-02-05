@@ -10,6 +10,7 @@
     <!-- This is how you would link your custom stylesheet -->
     <link rel="stylesheet" href="{% static 'css/app.css'%}">
     <script src="{% static 'js/vendor/foundation.js'%}"></script>
+
     <title>Articles</title>
 </head>
 <body>
@@ -30,7 +31,6 @@
     <tr>
         <td data-label="{{ name }}">
             <a href="articleCard/{{name}}"> {{name}}</a>
-
         </td>
     </tr>
     {% endfor %}
@@ -49,5 +49,7 @@
             .addClass(selectedCssClass)
             .parent().addClass('is-voted');
       });
+
+
 </script>
 </html>

@@ -31,14 +31,14 @@ def uploadArticle(request):
 
 @login_required()
 def articlesList(request):
-   articles = Article.objects.all()
+   articles = Article.objects.order_by('-rating')
    return render(request, "articles.html", { 'articles' : articles})
 
 @login_required()
 def article(request, articleName):
    with open(ARTICLES_PATH+'/'+articleName, 'rb') as pdf:
       response = HttpResponse(pdf.read(), content_type='application/pdf')
-      response['Content-Disposition'] = 'inline;filename=test.pdf'
+      response['Content-Disposition'] = 'inline;filename=+'+articleName+'.pdf'
       return response
 
 @login_required()

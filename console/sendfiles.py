@@ -13,8 +13,12 @@ try:
     
         full_filepath = input("Insert file path: ")
 
+        print("Describe the file: ")
+        filename = input("File name: ")
+        fileDescribe = input("Description: ")
+
         url = 'http://localhost:8000/uploadArticle/'
         files = {'file': open(full_filepath, 'rb')}
-        r = requests.post(url, files=files)
+        r = requests.post(url, files=files, data={filename: fileDescribe})
 except Exception as e:
     print(e)

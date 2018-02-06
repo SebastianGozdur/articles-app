@@ -1,0 +1,40 @@
+body {
+
+}
+
+.callout  {
+    height: 100%;
+
+}
+
+.menu li a {
+    color: black;
+    font-weight: bold;
+}
+
+.customCallout {
+    width: 90%;
+    float:left;
+}
+
+.customRow {
+    width: 100px;
+}
+
+.mainBlockContainer {
+    height:200px;
+}
+
+.logo {
+    width: 10%;
+    height: 100%;
+    float: left;
+    background: url("../img/logo.png");
+    background-repeat: no-repeat;
+    background-size: 191px 100%;
+
+}
+
+.customLoginRow {
+    width:200px;
+}

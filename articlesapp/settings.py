@@ -26,11 +26,13 @@ SECRET_KEY = 'l1dwwgov!=e8@e03!7a$7pp4ss1b96fq^z5%jv=kbigx&9iuzf'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_REDIRECT_URL = '/login/'
+LOGIN_URL = '/login/'
 
 # Application definition
 
 INSTALLED_APPS = [
+	'polls',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,4 +121,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+print(os.path.join(BASE_DIR, 'static/'))
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'articlesapp', 'static', 'static_root')
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = ( 
+	os.path.join(BASE_DIR, 'articlesapp', 'static', 'foundation'),
+)

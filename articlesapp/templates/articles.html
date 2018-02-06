@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="hover">
+    <thead>
+    <tr>
+        <th>File Name</th>
+        <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for article in articles %}
+    <tr>
+        <td data-label="{{ article.articleName }}">
+            <a href="articleCard/{{article.articleName }}"> {{article.articleName}}</a>
+        </td>
+        <td data-label="{{ article.rating }}">
+             {{article.rating}}/5
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

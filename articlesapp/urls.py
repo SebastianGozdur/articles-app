@@ -27,5 +27,6 @@ urlpatterns = [
     path('article/<str:articleName>/', article, name = "article"),
     path('articleCard/<str:articleName>/', articleCard, name = "articleCard"),
     path('submitVote/', submitVote, name = 'vote'),
-    url(r'^login/$', auth_views.login, name='login')
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout')
 ]

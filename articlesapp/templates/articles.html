@@ -5,13 +5,17 @@
     <thead>
     <tr>
         <th>File Name</th>
+        <th>Rating</th>
     </tr>
     </thead>
     <tbody>
-    {% for name in articles %}
+    {% for article in articles %}
     <tr>
-        <td data-label="{{ name }}">
-            <a href="articleCard/{{name}}"> {{name}}</a>
+        <td data-label="{{ article.articleName }}">
+            <a href="articleCard/{{article.articleName }}"> {{article.articleName}}</a>
+        </td>
+        <td data-label="{{ article.rating }}">
+             {{article.rating}}/5
         </td>
     </tr>
     {% endfor %}
